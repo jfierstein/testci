@@ -16,8 +16,8 @@ deploy_cluster() {
     make_task_def
     register_definition
     aws ecs update-service --service testci-dev --task-definition $revision
-    oldTask=$(aws ecs list-tasks | $JQ '.taskArns[0]');
-    aws ecs stop-task --task $oldTask
+    #oldTask=$(aws ecs list-tasks | $JQ '.taskArns[0]');
+    #aws ecs stop-task --task $oldTask
     return 0
 }
 
