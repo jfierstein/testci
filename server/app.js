@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
-const config = require('config/env');
-const port = process.env.PORT || config.port;
+//const config = require('config/env');
+const port = 3000; //process.env.PORT || config.port;
 const path = process.cwd() + '/client/';
 
 app.use(express.static(path));
