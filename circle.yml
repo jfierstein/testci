@@ -1,0 +1,14 @@
+machine:
+  services:
+    - docker
+dependencies:
+  pre:
+    - docker login -u="${DOCKER_USER_ID}" -p="${DOCKER_USER_PW}" -e="${DOCKER_EMAIL}"
+  post:
+    - curl -L -o ~/bin/jq https://github.com/stedolan/jq/releases/download/jq-1.5rc1/jq-linux-x86_64-static && chmod +x ~/bin/jq
+    - docker build -t $DOCKER_USER_ID/testci:$CIRCLE_BUILD_NUM .
+deployment:
+  dev:
+    branch: dev
+    commands:
+      - sh deploy.sh
