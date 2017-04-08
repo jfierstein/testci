@@ -1,6 +1,6 @@
 'use strict';
 
 module.exports = {
-    env: 'development',
+    env: 'dev',
     port: 3000
 }

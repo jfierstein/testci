@@ -1,6 +1,6 @@
 'use strict';
 
 module.exports = {
-    env: 'production',
+    env: 'prod',
     port: 3001
 }
