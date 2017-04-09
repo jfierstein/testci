@@ -1,4 +1,1 @@
-module.exports = {
-    "BuildNumber": 0,
-    "DeployRelease": "Local"
-}
+module.exports = {"BuildNumber": "::buildnum","DeployRelease": "Local"}

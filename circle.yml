@@ -6,7 +6,7 @@ dependencies:
     - docker login -u="${DOCKER_USER_ID}" -p="${DOCKER_USER_PW}" -e="${DOCKER_EMAIL}"
   post:
     - curl -L -o ~/bin/jq https://github.com/stedolan/jq/releases/download/jq-1.5rc1/jq-linux-x86_64-static && chmod +x ~/bin/jq
-    - docker build -t $DOCKER_USER_ID/testci:$APP_VERSION.$CIRCLE_BUILD_NUM  --rm=false .
+    - docker build -t $DOCKER_USER_ID/testci:$APP_VERSION.$CIRCLE_BUILD_NUM  --build-arg APP_VERSION=$APP_VERSION.$CIRCLE_BUILD_NUM --rm=false .
 deployment:
   prod:
     branch: master
