@@ -53,7 +53,7 @@ make_task_def(){
 			"portMappings": [
 				{
 					"containerPort": 3000,
-					"hostPort": 3003
+					"hostPort": 3000
 				}
 			]
 		}
