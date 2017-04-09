@@ -2,5 +2,5 @@
 
 module.exports = {
     env: 'prod',
-    port: 3001
+    port: 3000
 }
