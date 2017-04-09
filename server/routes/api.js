@@ -7,7 +7,7 @@ const config = require('config/env');
 
 router.get('/buildInfo', function (req, res) {
   let info = Object.assign({}, buildInfo);
-  info.env = config.env;
+  info.Environment = config.env;
   res.json(info);
 });
 
