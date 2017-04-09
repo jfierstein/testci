@@ -11,4 +11,6 @@ COPY . .
 
 RUN sed -i "s|::buildnum|$APP_VERSION|g" /server/buildInfo.js
 
+RUN npm run webpack
+
 CMD npm start

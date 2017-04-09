@@ -1,0 +1,37 @@
+body {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    font-weight: 300;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+header {
+    height: 100vh;
+    background: #111;
+    color: #fff;
+    padding: 30px 25px 25px 50px;
+    position: relative;
+}
+
+header p {
+    margin: 15px 0px 0px 0px;
+    padding: 0;
+    font-weight: 400;
+}
+
+header .buildInfo {
+    position: absolute;
+    bottom: 30px;
+    left: 50px;
+    font-size: .8em;
+    opacity: .25;
+}
+
+.header-buttons {
+    margin-top: 25px;
+}
+
+.header-button-label {
+    margin-left: 5px;
+}
