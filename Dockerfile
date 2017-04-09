@@ -12,5 +12,3 @@ COPY . .
 RUN sed -i "s|::buildnum|$APP_VERSION|g" /server/buildInfo.js
 
 CMD npm start
-
-EXPOSE 3001

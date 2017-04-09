@@ -52,7 +52,8 @@ make_task_def(){
             }],
 			"portMappings": [
 				{
-					"containerPort": 3001
+					"containerPort": 3001,
+                    "hostPort" : 3001
 				}
 			]
 		}
