@@ -52,8 +52,7 @@ make_task_def(){
             }],
 			"portMappings": [
 				{
-					"containerPort": 5000,
-					"hostPort": 5000
+					"containerPort": 3000
 				}
 			]
 		}
