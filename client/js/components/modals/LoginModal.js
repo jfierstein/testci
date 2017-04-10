@@ -26,13 +26,20 @@ class LoginModal extends React.Component {
     return (      
       <Modal show={this.props.show} onHide={this.hideModal} bsSize="small" backdrop="static">
         <Modal.Header>
-          <Modal.Title>Login</Modal.Title>
+          <Modal.Title>Sign In</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <form class="form-signin">
+            <label for="inputEmail" class="sr-only">Email address</label>
+            <input style={{marginBottom : 5}} type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus />
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required />
+            
+          </form>
         </Modal.Body>
         <Modal.Footer>
-            <Button onClick={this.closeModal}>Cancel</Button>
-            <Button bsStyle="success" onClick={ this.login }>Submit</Button>
+            <Button class="btn btn-block" onClick={this.closeModal}>Cancel</Button>
+            <button class="btn btn-primary btn-block" type="submit">Sign in</button>
         </Modal.Footer>
       </Modal>
     )
