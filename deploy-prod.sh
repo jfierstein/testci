@@ -46,10 +46,16 @@ make_task_def(){
 			"essential": true,
 			"memory": 200,
 			"cpu": 10,
-            "environment" : [{
-                "name" : "NODE_ENV",
-                "value" : "prod"
-            }],
+            "environment" : [
+                {
+                    "name" : "NODE_ENV",
+                    "value" : "prod"
+                },
+                {
+                    "name" : "MONGO_URI",
+                    "value" : "%s"
+                }
+            ],
 			"portMappings": [
 				{
 					"containerPort": 3000,
@@ -59,7 +65,7 @@ make_task_def(){
 		}
 	]'
 	
-	task_def=$(printf "$task_template" $DOCKER_USER_ID $APP_VERSION $CIRCLE_BUILD_NUM)
+	task_def=$(printf "$task_template" $DOCKER_USER_ID $APP_VERSION $CIRCLE_BUILD_NUM $MONGO_URI_PROD)
 }
 
 push_ecr_image(){
