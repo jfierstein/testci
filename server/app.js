@@ -13,7 +13,7 @@ const mongo = require('lib/db/instance');
 const errorHandler = require('lib/express/errorHandler');
 
 app.use(errorHandler);
-app.use(express.static(client.path));
+//app.use(express.static(client.path));
 
 app.use('/api', require('routes/api'));
 app.use(require('routes/static'));
