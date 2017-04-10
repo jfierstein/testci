@@ -10,8 +10,9 @@ const port = config.port;
 const client = require('lib/helpers/client');
 const logger = require('lib/helpers/logger');
 const mongo = require('lib/db/instance');
+const errorHandler = require('lib/express/errorHandler');
 
-
+app.use(errorHandler);
 app.use(express.static(client.path));
 
 app.use('/api', require('routes/api'));

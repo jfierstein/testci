@@ -3,6 +3,8 @@
 import { Modal, Button, ButtonToolbar, MenuItem, Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
+import { fetchBuildInfo } from 'actions/buildInfoActions';
+
 function mapStoreStateToProps(store) {
   return {
     buildInfo: store.buildInfo.info
@@ -13,6 +15,11 @@ class AboutModal extends React.Component {
  
   constructor(props) {
     super(props);
+  }
+
+
+  componentWillMount() {
+    this.props.dispatch(fetchBuildInfo());
   }
 
   hideModal = (e) => {

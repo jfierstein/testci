@@ -34,7 +34,6 @@ class LoginModal extends React.Component {
             <input style={{marginBottom : 5}} type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus />
             <label for="inputPassword" class="sr-only">Password</label>
             <input type="password" id="inputPassword" class="form-control" placeholder="Password" required />
-            
           </form>
         </Modal.Body>
         <Modal.Footer>

@@ -3,16 +3,12 @@
 import { Button, Row, Col, Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
-import { fetchBuildInfo } from 'actions/buildInfoActions';
 import LoginModal from 'components/modals/LoginModal'
 import AboutModal from 'components/modals/AboutModal'
 import { browserHistory } from 'react-router';
 
-
 function mapStoreStateToProps(store) {
-  return {
-    buildInfo: store.buildInfo.info
-  }
+  return {}
 }
 
 class Header extends React.Component {
@@ -25,12 +21,12 @@ class Header extends React.Component {
     };
   };
 
-  componentWillMount() {
-    this.props.dispatch(fetchBuildInfo());
-  }
-
   homeClicked = () => {
     browserHistory.push('/');
+  }
+
+  imagesClicked = () => {
+    browserHistory.push('/images');
   }
 
   aboutClicked = () => {
@@ -81,6 +77,7 @@ class Header extends React.Component {
             </Nav>
             <Nav>
               <NavItem onClick={this.homeClicked}>Home</NavItem>
+              <NavItem onClick={this.imagesClicked}>Images</NavItem>
             </Nav>
         </Navbar.Collapse>
       </Navbar>
