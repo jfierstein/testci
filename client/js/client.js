@@ -7,7 +7,6 @@ import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 
 import Header from 'components/Header';
 import HomeView from 'components/HomeView';
-import BuildInfoView from 'components/BuildInfoView';
 import store from 'store';
 
 const app = document.getElementById('app');
@@ -22,9 +21,7 @@ ReactDOM.render(
           <Header/>
           <Router history={history}>
             <Route path="/" component={HomeView}>
-            </Route>
-            <Route path="/build-info" component={BuildInfoView}>
-            </Route>            
+            </Route>          
           </Router>
       </div>
     </Provider>

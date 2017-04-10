@@ -1,6 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
-
+process.noDeprecation = true;
 module.exports = {
   context: path.resolve(__dirname, './client'),
   devtool: "inline-sourcemap",
