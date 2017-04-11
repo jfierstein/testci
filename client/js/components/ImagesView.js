@@ -6,22 +6,24 @@ import { fetchTaggedImages } from 'actions/imageActions';
 
 function mapStoreStateToProps(store) {
   return {
-    images: store.images.images
+    images: store.images.images,
+    user: store.user
   }
 }
 
 class ImagesView extends React.Component {
 
   componentWillMount() {
-    this.props.dispatch(fetchTaggedImages());
+    if(this.props.user.loggedIn) this.props.dispatch(fetchTaggedImages());
   }
 
   render() {
     const dockerImages = this.props.images ? this.props.images : [];
     let imageList = [];
     dockerImages.forEach((image) => {
-        imageList.push(<ListGroupItem href="#">{image.name}</ListGroupItem>);
+        imageList.push(<ListGroupItem>{image.name}</ListGroupItem>);
     });
+    if(!this.props.user.loggedIn) return null;
     return (
       <div>
         <div className="container">
@@ -31,6 +33,7 @@ class ImagesView extends React.Component {
           </ListGroup>
         </div>
       </div>
+      
     );
   }
 

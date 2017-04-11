@@ -17,7 +17,6 @@ class AboutModal extends React.Component {
     super(props);
   }
 
-
   componentWillMount() {
     this.props.dispatch(fetchBuildInfo());
   }

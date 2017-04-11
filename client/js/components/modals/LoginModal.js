@@ -21,6 +21,10 @@ class LoginModal extends React.Component {
     this.props.close();
   }
 
+  loginClicked = () => {
+    window.location.href = '/api/auth/google';
+  }
+
   
   render() {      
     return (      
@@ -28,17 +32,9 @@ class LoginModal extends React.Component {
         <Modal.Header>
           <Modal.Title>Sign In</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <form class="form-signin">
-            <label for="inputEmail" class="sr-only">Email address</label>
-            <input style={{marginBottom : 5}} type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus />
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required />
-          </form>
-        </Modal.Body>
         <Modal.Footer>
+            <button class="btn btn-danger btn-block" onClick={this.loginClicked} type="submit"><i class="fa fa-google-plus" /> Log in with Google</button>          
             <Button class="btn btn-block" onClick={this.closeModal}>Cancel</Button>
-            <button class="btn btn-primary btn-block" type="submit">Sign in</button>
         </Modal.Footer>
       </Modal>
     )

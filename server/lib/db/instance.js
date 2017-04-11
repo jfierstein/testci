@@ -29,6 +29,4 @@ db.on('open', function () {
     logger.info('Connection opened to MongoDB');
 });
 
-module.exports = {
-    init,
-};
+module.exports = { init };

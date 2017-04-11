@@ -3,12 +3,16 @@
 import { Button, Row, Col, Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
+import { getAuthStatus } from 'actions/userActions';
+
 import LoginModal from 'components/modals/LoginModal'
 import AboutModal from 'components/modals/AboutModal'
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 
 function mapStoreStateToProps(store) {
-  return {}
+  return {
+    user: store.user
+  }
 }
 
 class Header extends React.Component {
@@ -16,17 +20,24 @@ class Header extends React.Component {
    constructor(props) {
     super(props);
     this.state = {
-      showLoginModal : false,
       showAboutModal : false
     };
-  };
+  }
+
+  componentWillMount() {
+    this.props.dispatch(getAuthStatus());
+  }
 
   homeClicked = () => {
-    browserHistory.push('/');
+    hashHistory.push('/');
   }
 
   imagesClicked = () => {
-    browserHistory.push('/images');
+    hashHistory.push('/images');
+  }
+
+  deploymentsClicked = () => {
+    hashHistory.push('/deployments');
   }
 
   aboutClicked = () => {
@@ -57,9 +68,13 @@ class Header extends React.Component {
     });
   }
 
-  render() {
+  logoutClicked = () => {
+    window.location.href = '/api/auth/logout';
+  }
 
-    const { buildInfo } = this.props;
+
+  render() {
+    const { user } = this.props;
     return (
       <Navbar inverse collapseOnSelect>
           <Navbar.Header>
@@ -72,12 +87,13 @@ class Header extends React.Component {
             <Nav pullRight>
               { this.state.showAboutModal  ? <AboutModal show={this.state.showAboutModal}  close={this.closeAboutModal} /> : null }              
               <NavItem onClick={this.aboutClicked}><i style={{ marginRight : 5}} className="fa fa-info-circle" />About</NavItem>
-              { this.state.showLoginModal ? <LoginModal show={this.state.showLoginModal}  close={this.closeLoginModal} /> : null }
-              <NavItem onClick={this.loginClicked}><i style={{ marginRight : 5}} className="fa fa-sign-in" />Login</NavItem>
+              { this.state.showLoginModal  ? <LoginModal show={this.state.showLoginModal}  close={this.closeLoginModal} /> : null }        
+              <NavItem onClick={user.loggedIn ? this.logoutClicked : this.loginClicked }><i style={{ marginRight : 5}} className={user.loggedIn ? "fa fa-sign-out" : "fa fa-sign-in"} />{user.loggedIn ? "Logout" : "Login"}</NavItem>
             </Nav>
             <Nav>
               <NavItem onClick={this.homeClicked}>Home</NavItem>
-              <NavItem onClick={this.imagesClicked}>Images</NavItem>
+              {user.loggedIn ? <NavItem onClick={this.imagesClicked}>Images</NavItem> : null }
+              {user.loggedIn ? <NavItem onClick={this.deploymentsClicked}>Deployments</NavItem> : null }
             </Nav>
         </Navbar.Collapse>
       </Navbar>
