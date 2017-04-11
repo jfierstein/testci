@@ -49,17 +49,17 @@ make_task_def(){
             "environment" : [
                 {
                     "name" : "NODE_ENV", 
-                    "value" : "dev"
+                    "value" : "prod"
                 },
                 {
                     "name" : "MONGO_URI",
                     "value" : "%s"
                 },
-                                {
+                {
                     "name" : "GOOGLE_API_CLIENT_ID",
                     "value" : "%s"
                 },
-                                {
+                {
                     "name" : "GOOGLE_API_SECRET",
                     "value" : "%s"
                 },
