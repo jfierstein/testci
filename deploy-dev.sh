@@ -77,7 +77,7 @@ make_task_def(){
 		}
 	]'
 	
-	task_def=$(printf "$task_template" $DOCKER_USER_ID $APP_VERSION $CIRCLE_BUILD_NUM $MONGO_URI_DEV $GOOGLE_API_CLIENT_ID $GOOGLE_API_SECRET $SITE_URL)
+	task_def=$(printf "$task_template" $DOCKER_USER_ID $APP_VERSION $CIRCLE_BUILD_NUM $MONGO_URI_DEV $GOOGLE_API_CLIENT_ID $GOOGLE_API_SECRET $SITE_URL_DEV)
 }
 
 push_ecr_image(){
