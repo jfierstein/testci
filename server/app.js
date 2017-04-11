@@ -16,13 +16,6 @@ const logger = require('lib/helpers/logger');
 const mongo = require('lib/db/instance');
 const errorHandler = require('lib/express/errorHandler');
 
-if(process.env.NODE_ENV !== 'local') {
-  // set up a route to redirect http to https for all deployed environments
-  app.get('*',function(req,res){  
-      res.redirect('https://' + process.env.SITE_URL + req.url);
-  });
-}
-
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
