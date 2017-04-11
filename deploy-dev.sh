@@ -54,6 +54,14 @@ make_task_def(){
                 {
                     "name" : "MONGO_URI",
                     "value" : "%s"
+                },
+                                {
+                    "name" : "GOOGLE_API_CLIENT_ID",
+                    "value" : "%s"
+                },
+                                {
+                    "name" : "GOOGLE_API_SECRET",
+                    "value" : "%s"
                 }
             ],
 			"portMappings": [
@@ -65,7 +73,7 @@ make_task_def(){
 		}
 	]'
 	
-	task_def=$(printf "$task_template" $DOCKER_USER_ID $APP_VERSION $CIRCLE_BUILD_NUM $MONGO_URI_DEV)
+	task_def=$(printf "$task_template" $DOCKER_USER_ID $APP_VERSION $CIRCLE_BUILD_NUM $MONGO_URI_DEV $GOOGLE_API_CLIENT_ID $GOOGLE_API_SECRET)
 }
 
 push_ecr_image(){
