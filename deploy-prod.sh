@@ -48,11 +48,23 @@ make_task_def(){
 			"cpu": 10,
             "environment" : [
                 {
-                    "name" : "NODE_ENV",
-                    "value" : "prod"
+                    "name" : "NODE_ENV", 
+                    "value" : "dev"
                 },
                 {
                     "name" : "MONGO_URI",
+                    "value" : "%s"
+                },
+                                {
+                    "name" : "GOOGLE_API_CLIENT_ID",
+                    "value" : "%s"
+                },
+                                {
+                    "name" : "GOOGLE_API_SECRET",
+                    "value" : "%s"
+                },
+                {
+                    "name" : "SITE_URL",
                     "value" : "%s"
                 }
             ],
@@ -65,7 +77,7 @@ make_task_def(){
 		}
 	]'
 	
-	task_def=$(printf "$task_template" $DOCKER_USER_ID $APP_VERSION $CIRCLE_BUILD_NUM $MONGO_URI_PROD)
+	task_def=$(printf "$task_template" $DOCKER_USER_ID $APP_VERSION $CIRCLE_BUILD_NUM $MONGO_URI_PROD $GOOGLE_API_CLIENT_ID $GOOGLE_API_SECRET $SITE_URL_PROD)
 }
 
 push_ecr_image(){
