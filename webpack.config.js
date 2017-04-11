@@ -1,9 +1,10 @@
+const debug = process.env.NODE_ENV !== "prod";
 var webpack = require('webpack');
 var path = require('path');
 process.noDeprecation = true;
 module.exports = {
   context: path.resolve(__dirname, './client'),
-  devtool: "inline-sourcemap",
+  devtool: debug ? "inline-sourcemap" : false,
   entry: "./js/client.js",
   module: {
     rules: [
@@ -32,9 +33,20 @@ module.exports = {
     path: path.resolve(__dirname, './client/dist'),
     filename: "client.min.js"
   },
-  plugins: [
+  plugins: debug ? [
     new webpack.ProvidePlugin({
-      React: 'react'
+      React: 'react',
     })
-  ]
+  ] : [
+    new webpack.ProvidePlugin({
+      React: 'react',
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('prod')
+      }
+    }),
+    new webpack.optimize.AggressiveMergingPlugin(),
+    new webpack.LoaderOptionsPlugin({ minimize: true, debug: false }),
+  ],
 };
