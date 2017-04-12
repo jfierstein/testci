@@ -24,7 +24,7 @@ router.get('/ping', function (req, res) {
 });
 
 router.get('/printenv', function (req, res) {
-  res.json(process.env);
+  res.json({env: process.env, headers: req.headers});
 });
 
 
