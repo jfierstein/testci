@@ -4,22 +4,26 @@ require('app-module-path').addPath(__dirname);
 
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 const express = require('express');
 const expressSession = require('express-session');
+const forceHTTPS = require('node-force-secure-redirect');
 const passport = require('lib/express/passportAuth');
 const errorHandler = require('lib/express/errorHandler');
-const forceHttps = require('lib/express/forceHttps');
-const config = require('config/env');
-const cors = require('cors');
 const client = require('lib/helpers/client');
 const logger = require('lib/helpers/logger');
 const mongo = require('lib/db/instance');
 
+const config = require('config/env');
+
 const app = express();
-//app.use(forceHttps);
 const port = config.port;
+const secureEnvs = ['prod', 'staging'];
 
 app.set('view engine', 'ejs');
+app.set('trust proxy');
+
+app.use(forceHTTPS(secureEnvs));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
