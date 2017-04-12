@@ -23,6 +23,10 @@ router.get('/ping', function (req, res) {
   res.sendStatus(200);
 });
 
+router.get('/printenv', function (req, res) {
+  res.json(process.env);
+});
+
 
 /*
 / AWS
