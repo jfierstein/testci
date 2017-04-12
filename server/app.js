@@ -18,7 +18,7 @@ const config = require('config/env');
 
 const app = express();
 const port = config.port;
-const secureEnvs = ['prod', 'staging'];
+const secureEnvs = ['prod', 'dev'];
 
 app.set('view engine', 'ejs');
 app.set('trust proxy');
