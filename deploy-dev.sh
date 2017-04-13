@@ -15,7 +15,7 @@ deploy_cluster() {
 
     make_task_def
     register_definition
-    if [[ $(aws ecs update-service --cluster default --service testci-dev --task-definition $revision | \
+    if [[ $(aws ecs update-service --cluster testci-dev-cluster --service testci-dev --task-definition $revision | \
                    $JQ '.service.taskDefinition') != $revision ]]; then
         echo "Error updating service."
         return 1
@@ -24,7 +24,7 @@ deploy_cluster() {
     # wait for older revisions to disappear
     # not really necessary, but nice for demos
     for attempt in {1..30}; do
-        if stale=$(aws ecs describe-services --cluster default --services testci-dev | \
+        if stale=$(aws ecs describe-services --cluster testci-dev-cluster --services testci-dev | \
                        $JQ ".services[0].deployments | .[] | select(.taskDefinition != \"$revision\") | .taskDefinition"); then
             echo "Waiting for stale deployments:"
             echo "$stale"
@@ -59,7 +59,7 @@ make_task_def(){
                     "name" : "GOOGLE_API_CLIENT_ID",
                     "value" : "%s"
                 },
-                                {
+                {
                     "name" : "GOOGLE_API_SECRET",
                     "value" : "%s"
                 },
