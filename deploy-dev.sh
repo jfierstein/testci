@@ -53,7 +53,15 @@ make_task_def(){
                 {
                     "name" : "SITE_URL",
                     "value" : "%s"
-                }
+                },
+                {
+                    "name" : "AWS_ACCESS_KEY_ID",
+                    "value" : "%s"
+                },
+                {
+                    "name" : "AWS_SECRET_ACCESS_KEY",
+                    "value" : "%s"
+                },
             ],
 			"portMappings": [
 				{
@@ -64,7 +72,7 @@ make_task_def(){
 		}
 	]'
 	
-	task_def=$(printf "$task_template" $DOCKER_USER_ID $APP_VERSION $CIRCLE_BUILD_NUM $MONGO_URI_DEV $GOOGLE_API_CLIENT_ID $GOOGLE_API_SECRET $SITE_URL_DEV)
+	task_def=$(printf "$task_template" $DOCKER_USER_ID $APP_VERSION $CIRCLE_BUILD_NUM $MONGO_URI_DEV $GOOGLE_API_CLIENT_ID $GOOGLE_API_SECRET $SITE_URL_DEV $AWS_ACCESS_KEY_ID $AWS_ACCESS_KEY_ID)
 }
 
 push_ecr_image(){

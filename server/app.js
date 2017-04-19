@@ -9,6 +9,7 @@ const express = require('express');
 const expressSession = require('express-session');
 const forceHTTPS = require('node-force-secure-redirect');
 const passport = require('lib/express/passportAuth');
+const tagReq = require('lib/express/tagReq');
 const errorHandler = require('lib/express/errorHandler');
 const client = require('lib/helpers/client');
 const logger = require('lib/helpers/logger');
@@ -22,7 +23,6 @@ const secureEnvs = ['prod', 'dev'];
 
 app.set('view engine', 'ejs');
 app.set('trust proxy');
-
 app.use(forceHTTPS(secureEnvs));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -34,6 +34,7 @@ app.use(require('express-session')({
   resave: true,
   saveUninitialized: true
 }));
+app.use(tagReq);
 app.use(express.static(client.path));
 app.use(passport.initialize());
 app.use(passport.session());

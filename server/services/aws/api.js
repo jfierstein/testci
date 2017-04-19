@@ -12,7 +12,7 @@ provide.getRunningServices = () => {
         var ecs = new AWS.ECS();
         ecs.describeServices({ cluster: 'testci-dev-cluster', services: ['testci-dev'] }, function (err, data) {
             if (err) reject(err);
-            if (data.services.length) {
+            else if (data.services.length) {
                 //get the task definition of services[0]
                 const serviceTaskDefArn = data.services[0].taskDefinition;
                 ecs.describeTaskDefinition({taskDefinition: serviceTaskDefArn}, function (err, data) {
