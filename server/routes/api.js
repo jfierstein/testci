@@ -3,6 +3,7 @@
 let router = require('express').Router();
 
 const dockerApi = require('services/docker/api');
+const awsApi = require('services/aws/api');
 
 const buildInfo = require('buildInfo');
 const config = require('config/env');
@@ -47,6 +48,14 @@ router.get('/docker/tagged-images',authReq , function (req, res) {
 router.post('/deployments/add', function (req, res) {
   const { name } = req.body;
   let action = User.addDeploymentToUser({ googleId: '111321919165682944453' }, name);
+  res.promise(action);
+});
+
+/*
+/ AWS
+*/
+router.get('/aws/services', function (req, res) {
+  let action = awsApi.getRunningServices();
   res.promise(action);
 });
 
